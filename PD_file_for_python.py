@@ -87,10 +87,19 @@ def Remove_comment(string):
 	return str_r
 
 def tokenizing(string):
-	
+
+	length = len(string)
+	r_cursor = 0
 	if "=" in string:
 		split_str = string.split("=")
 		string = "value = " + split_str[1]
+	elif "def" in string:
+		for cursor in range(0,len(string)-1):
+			if string[cursor] == "(":
+				r_cursor = cursor
+				break
+		string = "func" + string[r_cursor:]
+	
 	return string
 
 #########################main#################################
