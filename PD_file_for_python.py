@@ -52,6 +52,7 @@ def GetFiletoList(nGram,filename,dirname):
 	#rstrip으로 \n 제거 
 	for line in lines :
 		line = Remove_comment(line)
+		line = tokenizing(line)
 		totalStr_r += line.rstrip()
 	#split으로 space 제거 
 	lines_r = totalStr_r.split()
@@ -73,7 +74,7 @@ def Get_dir_list(dirname):
 
     print (flist)
     return flist
-# '//' 형태의 주석 제거
+# '#' 형태의 주석 제거
 def Remove_comment(string):
 
 	str_r = ""
@@ -85,7 +86,12 @@ def Remove_comment(string):
 
 	return str_r
 
-
+def tokenizing(string):
+	
+	if "=" in string:
+		split_str = string.split("=")
+		string = "value = " + split_str[1]
+	return string
 
 #########################main#################################
 import os
